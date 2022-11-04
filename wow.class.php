@@ -27,7 +27,7 @@ if(!class_exists('wow')) {
 	class wow extends game_generic {
 
 		protected static $apiLevel	= 20;
-		public $version				= '8.3.23.12'; //Version for EQdkp Plus 2.3
+		public $version				= '10.0.0.2'; //Version for EQdkp Plus 2.3
 		protected $this_game		= 'wow';
 		protected $types			= array('factions', 'races', 'classes', 'talents', 'filters', 'realmlist', 'roles', 'classrole', 'professions', 'chartooltip');	// which information are stored?
 		protected $classes			= array();
@@ -75,8 +75,8 @@ if(!class_exists('wow')) {
 				'decorate'	=> true,
 				'parent'	=> array(
 					'faction' => array(
-						'alliance'	=> array(0,1,2,3,4,9,11,13,16,17,18,21,23),
-						'horde'		=> array(0,5,6,7,8,10,12,13,14,15,19,20,22),
+						'alliance'	=> array(0,1,2,3,4,9,11,13,16,17,18,21,23,24),
+						'horde'		=> array(0,5,6,7,8,10,12,13,14,15,19,20,22,24),
 					),
 				),
 			),
@@ -115,6 +115,7 @@ if(!class_exists('wow')) {
 						21	=> array(1,2,3,4,11,6,7,8,10), 		// Kul Tiran
 						22	=> array(1,3,4,6,7,8,9,10,11),		// Vulpera
 						23	=> array(1,3,4,6,7,9,10,11),		// Mechagnome
+						24	=> array(13),						// Dracthyr
 					),
 				),
 			),
@@ -139,6 +140,7 @@ if(!class_exists('wow')) {
 						10	=> array(28,29,30),	// Warrior
 						11	=> array(31,32,33),	// Monk
 						12	=> array(34,35),	// Demon Hunter
+						13	=> array(36,37),	// Evoker
 					),
 				),
 			),
@@ -162,15 +164,16 @@ if(!class_exists('wow')) {
 						10	=> array(28,29,30),	// Warrior
 						11	=> array(31,32,33),	// Monk
 						12	=> array(34,35),	// Demon Hunter
+						13	=> array(36,37),	// Evoker
 					),
 				),
 			),
 		);
 
 		public $default_roles = array(
-			1	=> array(2, 5, 6, 8, 11),					// healer
+			1	=> array(2, 5, 6, 8, 11, 13),				// healer
 			2	=> array(1, 2, 5, 10, 11, 12),				// tank
-			3	=> array(2, 3, 4, 6, 8, 9),					// dd distance
+			3	=> array(2, 3, 4, 6, 8, 9, 13),				// dd distance
 			4	=> array(1, 2, 3, 5, 7, 8, 10, 11, 12)		// dd near
 		);
 
@@ -187,6 +190,7 @@ if(!class_exists('wow')) {
 			10	=> 1,	// Warrior
 			11	=> 4,	// Monk
 			12	=> 2,	// Demon Hunter
+			13	=> 3,	// Evoker
 		);
 
 		// source http://wow.gamepedia.com/Class_colors
@@ -203,6 +207,7 @@ if(!class_exists('wow')) {
 			10	=> '#C79C6E',	// Warrior
 			11	=> '#00FF96',	// Monk
 			12	=> '#A330C9',	// Demon Hunter
+			13	=> '#33937F',	// Evoker
 		);
 
 		protected $glang		= array();
@@ -370,15 +375,18 @@ if(!class_exists('wow')) {
 					array('name' => $names[10], 'value' => 'class:10'),
 					array('name' => $names[11], 'value' => 'class:11'),
 					array('name' => $names[12], 'value' => 'class:12'),
+					array('name' => $names[13], 'value' => 'class:13'),
 					array('name' => '-----------', 'value' => false),
 					array('name' => $this->glang('plate', true, $lang), 'value' => 'class:1,5,10'),
-					array('name' => $this->glang('mail', true, $lang), 'value' => 'class:3,8'),
+					array('name' => $this->glang('mail', true, $lang), 'value' => 'class:3,8,13'),
 					array('name' => $this->glang('leather', true, $lang), 'value' => 'class:2,7,11,12'),
 					array('name' => $this->glang('cloth', true, $lang), 'value' => 'class:4,6,9'),
 					array('name' => '-----------', 'value' => false),
-					array('name' => $this->glang('tier_token', true, $lang).$names[3].', '.$names[10].', '.$names[8].', '.$names[11].', '.$names[12], 'value' => 'class:3,8,10,11,12'),
-					array('name' => $this->glang('tier_token', true, $lang).$names[5].', '.$names[6].', '.$names[9], 'value' => 'class:5,6,9'),
-					array('name' => $this->glang('tier_token', true, $lang).$names[1].', '.$names[2].', '.$names[4].', '.$names[7], 'value' => 'class:1,2,4,7'),
+
+					array('name' => $this->glang('tier_token', true, $lang).$names[13].', '.$names[11].', '.$names[7].', '.$names[10], 'value' => 'class:13,11,7,10'),
+					array('name' => $this->glang('tier_token', true, $lang).$names[1].', '.$names[12].', '.$names[9], 'value' => 'class:1,12,9'),
+					array('name' => $this->glang('tier_token', true, $lang).$names[2].', '.$names[3].', '.$names[4], 'value' => 'class:2,3,4'),
+					array('name' => $this->glang('tier_token', true, $lang).$names[5].', '.$names[6].', '.$names[8], 'value' => 'class:5,6,8'),
 				);
 			}
 		}
@@ -419,7 +427,7 @@ if(!class_exists('wow')) {
 					'type'			=> 'spinner',
 					'category'		=> 'character',
 					'lang'			=> 'uc_level',
-					'max'			=> 110,
+					'max'			=> 70,
 					'min'			=> 1,
 					'undeletable'	=> true,
 					'sort'			=> 4
