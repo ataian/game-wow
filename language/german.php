@@ -52,6 +52,7 @@ $german_array = array(
 		21 	=> 'Kul Tiran', // Alliance
 		22	=> 'Vulpera', // Horde
 		23	=> 'Mechagnom', // Alliance
+		24	=> 'Dracthyr', // Alliance, Horde
 	),
 	'classes' => array(
 		0	=> 'Unbekannt',
@@ -67,6 +68,7 @@ $german_array = array(
 		10	=> 'Krieger',
 		11	=> 'Mönch',
 		12	=> 'Dämonenjäger',
+		13	=> 'Rufer',
 	),
 	'talents'		=> array(
 		// Death Knight
@@ -117,6 +119,9 @@ $german_array = array(
 		// demon hunter
 		34	=> 'Verwüstung',
 		35	=> 'Rachsucht',
+		// evoker
+		36	=> 'Verheerung',
+		37	=> 'Bewahrung',
 	),
 	'roles' => array(
 		1	=> 'Heiler',

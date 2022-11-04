@@ -58,6 +58,7 @@ $english_array = array(
 	21 => 'Kul Tiran', // Alliance
 	22 => 'Vulpera', // Horde
 	23 => 'Mechagnome', // Alliance
+	24 => 'Dracthyr', // Alliance, Horde
 	),
 	"classes" => array(
 	0 => 'Unknown',
@@ -73,6 +74,7 @@ $english_array = array(
 	10 => 'Warrior',
 	11 => 'Monk',
 	12 => 'Demon Hunter',
+	13 => 'Evoker',
 	),
 	"talents" => array(
 	0 => 'Blood',
@@ -111,6 +113,8 @@ $english_array = array(
 	33 => 'Windwalker',
 	34 => 'Havoc',
 	35 => 'Vengeance',
+	36 => 'Devastation',
+	37 => 'Preservation',
 	),
 	"roles" => array(
 	1 => 'Healer',
