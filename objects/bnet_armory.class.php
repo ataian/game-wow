@@ -74,6 +74,7 @@ class bnet_armory extends gen_class {
 			11		=> '2',		// druid
 			10		=> '11',	//monk
 			12		=> '12',	// demon hunter
+			13		=> '13',	// Evoker
 		),
 		// https://wow.gamepedia.com/RaceId
 		'races' => array(
@@ -102,6 +103,8 @@ class bnet_armory extends gen_class {
 			'35'	=> 22,		// Vulpera
 			'36'	=> 19, 		// Mag'har Orc
 			'37'	=> 23,		// Mechagnome
+			'52'	=> 24,		// Dracthyr Alliance
+			'70'	=> 24,		// Dracthyr Horde
 		),
 		'gender' => array(
 			'0'		=> 'male',
@@ -156,6 +159,9 @@ class bnet_armory extends gen_class {
 			//Demonhunter
 			34 => 'ability_demonhunter_specdps',
 			35 => 'ability_demonhunter_spectank',
+			//Evoker
+			36 => 'ability-evoker-dragonrage',
+			37 => 'ability-evoker-spiritbloom2',
 		),
 	);
 
